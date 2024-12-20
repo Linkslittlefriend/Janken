@@ -1,0 +1,35 @@
+Pseudocode:
+
+Display 3
+Start timer
+On timer end Display 2
+start timer
+On timer end Display 1
+start timer
+On timer end Display 0
+alert user "ROCK PAPER OR SCISSORS?"
+take input from user - accept R,P,S as alternate inputs
+make two functions - getComputerChoice, getHumanChoice
+
+getComputerChoice
+generate random number multiply by 3, round it down, and add 1
+switch case for these 3 values
+if 1, generate string rock
+if 2, generate string paper
+if 3, generate string scissors
+return string
+
+getHumanChoice
+get result from alert
+switch case for rock paper scissors
+matching values for rock: rock, ROCK, Rock, R, r, and 1
+matching values for paper: paper, PAPER, Paper, P, pm and 2
+matching values for scissors: scissors, SCISSORS, Scissors, S, and 3
+return string
+
+compare strings
+switch case 3 scenarios
+win for human: rock to scissor, paper to rock, scissor to paper
+lose for human: scissor to rock, rock to paper, paper to scissor
+win for human: rock to rock, paper to paper, scissor to scissor
+return results
