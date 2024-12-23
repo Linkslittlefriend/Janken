@@ -28,8 +28,27 @@ matching values for scissors: scissors, SCISSORS, Scissors, S, and 3
 return string
 
 compare strings
-switch case 3 scenarios
-win for human: rock to scissor, paper to rock, scissor to paper
-lose for human: scissor to rock, rock to paper, paper to scissor
-win for human: rock to rock, paper to paper, scissor to scissor
-return results
+check if human and bot are equal
+    if true, then return tie
+    else
+    set if human greater than bot expression true or false
+        if bool scissorsRock(true/or false human flag, human, bot)
+            return "human wins"
+        else
+            return "Computer wins"
+
+    scissorsRock
+    if (flag)
+    x = human
+    y = bot
+    else
+    y = bot
+    x = human
+    return if x is 3 and y is 1
+
+    current error:
+
+    if 3 and 1 exist human side - wrong
+    if 2 and 1 exist human side - wrong
+    if 1 and 3 exist bot side - true
+    if 1 and 2 exist bot side - true
