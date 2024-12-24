@@ -61,52 +61,75 @@ function scissorsRock(flag,a,b){
     return (a === 3 && b === 1); // expression to confirm scissors and rock relationship
 }
 
-const r = "rock";
-const p = "paper";
-const s = "scissors";
-let holder;
+//scoreboard
+let humanScore = 0;
+let computerScore = 0;
 
-//screen timer display code goes here
+alert("Today, you are going to play JANKEN. its a 5 round game. You will be given a choice between 3 values. If you cant type letters, use 1, 2, or 3. Now....");
 
-const human = getHumanChoice(prompt("ROCK PAPER OR SCISSORS?"));
+for(game=0;game<5;game++){
+    PlayBall();
+}
 
-if(human === "fail"){
-    alert("you lose by default cause you stoopid");
-} else {
-    const bot = getComputerChoice();
-    const result = CalculateWin(human, bot);
+alert("FINITO. Score is.... " + humanScore + " for you.... and..." + computerScore + " for the BOT.");
 
-    holder = [human,bot];
 
-    for(i=0;i<2;i++){
-        switch(holder[i]){
+function PlayBall(){
+
+    // shorthands
+    const r = "rock";
+    const p = "paper";
+    const s = "scissors";
+    
+    
+    let holder;
+    
+    //screen timer display code goes here
+    
+    const human = getHumanChoice(prompt("ROCK PAPER OR SCISSORS?"));
+    
+    if(human === "fail"){
+        alert("you lose by default cause you stoopid");
+    } else {
+        const bot = getComputerChoice();
+        const result = CalculateWin(human, bot);
+    
+        holder = [human,bot];
+    
+        for(i=0;i<2;i++){
+            switch(holder[i]){
+                case 1:
+                    holder[i] = r;
+                    break;
+                case 2:
+                    holder[i] = p;
+                    break;
+                case 3:
+                    holder[i] = s;
+                    break;
+                default:
+                    alert("something went wrong");
+            }
+        }
+        
+        const statement = "you played " + holder[0] + " and your opponent played " + holder[1] + ".";
+    
+        switch(result){
             case 1:
-                holder[i] = r;
+                alert(statement + " YOU LOSE...");
+                computerScore++;
                 break;
-            case 2:
-                holder[i] = p;
+            case 10:
+                alert("Both of you played " + holder[0] + ". TIE.");
+                humanScore++;
+                computerScore++;
                 break;
-            case 3:
-                holder[i] = s;
+            case 100:
+                alert(statement + " YOU WIN!!!");
+                humanScore++;
                 break;
             default:
-                alert("something went wrong");
+                alert("SOMETHING WENT HORRIBLY WRONG");
         }
-    }
-    
-    const statement = "you played " + holder[0] + " and your opponent played " + holder[1] + ".";
-
-    switch(result){
-        case 1:
-            alert(statement + " YOU LOSE...");
-            break;
-        case 10:
-            alert("Both of you played " + holder[0] + ". TIE.");
-            break;
-        case 100:
-            alert(statement + " YOU WIN!!!");
-            break;
-        default:
-            alert("SOMETHING WENT HORRIBLY WRONG");
     }
 }
