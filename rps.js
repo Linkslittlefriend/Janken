@@ -43,9 +43,9 @@ function CalculateWin(hum, bot){
         console.log("entered else: " + hum + " " + bot);
         const flag = hum > bot;
         if(scissorsRock(flag, hum, bot)){
-            return 100; // flag for human win
-        } else {
             return 1; // flag for bot win
+        } else {
+            return 100; // flag for human win
         }
     }
 
@@ -53,38 +53,58 @@ function CalculateWin(hum, bot){
 
 function scissorsRock(flag,a,b){
 
-    // switches human and bot places if bot is higher
+    // conditional that activates when bot is higher
     if(!flag){
-        let temp = a;
-        a = b;
-        b = temp;
+        return !(a === 1 && b === 3);  // expression to confirm scissors and rock relationship, returns the inverse bool result to switch previous conditional relationship
     }
 
-    return a === 3 && b === 1; //expression to confirm scissors and rock relationship
+    return (a === 3 && b === 1); // expression to confirm scissors and rock relationship
 }
 
 const r = "rock";
 const p = "paper";
 const s = "scissors";
+let holder;
 
 //screen timer display code goes here
 
 const human = getHumanChoice(prompt("ROCK PAPER OR SCISSORS?"));
+
 if(human === "fail"){
     alert("you lose by default cause you stoopid");
 } else {
     const bot = getComputerChoice();
     const result = CalculateWin(human, bot);
+
+    holder = [human,bot];
+
+    for(i=0;i<2;i++){
+        switch(holder[i]){
+            case 1:
+                holder[i] = r;
+                break;
+            case 2:
+                holder[i] = p;
+                break;
+            case 3:
+                holder[i] = s;
+                break;
+            default:
+                alert("something went wrong");
+        }
+    }
     
+    const statement = "you played " + holder[0] + " and your opponent played " + holder[1] + ".";
+
     switch(result){
         case 1:
-            alert("YOU LOSE");
+            alert(statement + " YOU LOSE...");
             break;
         case 10:
-            alert("TIE");
+            alert("Both of you played " + holder[0] + ". TIE.");
             break;
         case 100:
-            alert("YOU WIN");
+            alert(statement + " YOU WIN!!!");
             break;
         default:
             alert("SOMETHING WENT HORRIBLY WRONG");
