@@ -1,0 +1,21 @@
+* {
+    text-align: center;
+}
+
+.btn {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    background-color: transparent;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+#Rock:hover {
+    src: "images/rock.png";
+}

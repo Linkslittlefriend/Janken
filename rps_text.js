@@ -2,26 +2,33 @@ function getComputerChoice(){
     return option = Math.floor(Math.random() * 3) + 1;
 }
 
-function getHumanChoice(choice){
-        console.log("entered");
-        console.log(choice);
-        switch(choice){
+function getHumanChoice(human){
+    for(i = 0;i < 10; i++){
+        console.log(human);
+        switch(human.toLowerCase()){
 
-            case "Rock":
+            case "rock":
+            case "r":
+            case "1":
                 console.log("worked 1");
-                human = 1;
+                return 1;
 
-            case "Paper":
+            case "paper":
+            case "p":
+            case "2":
                 console.log("worked 2");
-                human = 2;
+                return 2;
 
-            case "Scissors":
+            case "scissors":
+            case "s":
+            case "3":
                 console.log("worked 3");
-                human = 3;
+                return 3;
 
             default:
-                human = prompt("Something wrong happened. type 1 for rock, 2 for paper, 3 for scissors.");
+                human = prompt("WRONG VALUE. TYPE \"1\" FOR ROCK \"2\" FOR PAPER \"3\" FOR SCISSORS, OR GET A BRAIN AND WRITE THE ACTUAL THING.");
         }
+    }
 
     return "fail";
 }
@@ -58,44 +65,32 @@ function scissorsRock(flag,a,b){
 let humanScore = 0;
 let computerScore = 0;
 
-alert("Today, you are going to play JANKEN. Click the button to play a move and the computer will pick as well.");
+alert("Today, you are going to play JANKEN. its a 5 round game. You will be given a choice between 3 values. If you cant type letters, use 1, 2, or 3. Now....");
 
-//for(game=0;game<5;game++){
+for(game=0;game<5;game++){
     PlayBall();
-//}
+}
 
 alert("FINITO. Score is.... " + humanScore + " for you.... and..." + computerScore + " for the BOT.");
 
 
 function PlayBall(){
-    console.log("entered playBALL");
+
     // shorthands
     const r = "rock";
     const p = "paper";
     const s = "scissors";
     
-    let human;
+    
     let holder;
     
     //screen timer display code goes here
     
-    //const human = getHumanChoice(prompt("ROCK PAPER OR SCISSORS?"));
+    const human = getHumanChoice(prompt("ROCK PAPER OR SCISSORS?"));
     
-    const Btns = document.querySelectorAll("button");
-
-    Btns.forEach((div) => {
-        console.log(div);
-        div.addEventListener("click", getHumanChoice(div.id));
-    });
-
     if(human === "fail"){
         alert("you lose by default cause you stoopid");
     } else {
-        if(human == undefined)
-        {
-            alert("I don't know how but you played undefined bro. ending game.");
-            return 0;
-        }
         const bot = getComputerChoice();
         const result = CalculateWin(human, bot);
     
