@@ -5,19 +5,17 @@ function getComputerChoice(){
 function getHumanChoice(choice){
         console.log("entered");
         console.log(choice);
-        switch(choice){
+        switch(choice.toLowerCase()){
 
-            case "Rock":
+            case "rock":
                 console.log("worked 1");
-                human = 1;
-
-            case "Paper":
+                return human = 1;
+            case "paper":
                 console.log("worked 2");
-                human = 2;
-
-            case "Scissors":
+                return human = 2;
+            case "scissors":
                 console.log("worked 3");
-                human = 3;
+                return human = 3;
 
             default:
                 human = prompt("Something wrong happened. type 1 for rock, 2 for paper, 3 for scissors.");
@@ -54,46 +52,70 @@ function scissorsRock(flag,a,b){
     return (a === 3 && b === 1); // expression to confirm scissors and rock relationship
 }
 
+function newGame(){
+    humanScore = 0;
+    computerScore = 0;
+    gameover = false;
+
+    GUIscore.textContent = humanScore + " - " + computerScore;
+    GUItext.textContent = "WELCOME TO JANKEN. The rules are simple. You click one of the three buttons above, and fight a CPU. First to 5 wins.";
+}
+
+function setResetButton(){
+    const resetbtn = document.createElement("button");
+
+    resetbtn.classList.add("UI");
+    resetbtn.setAttribute("id", "reset");
+    resetbtn.textContent = "PLAY AGAIN";
+
+    const parent = document.querySelector(".container");
+    const scorechild = document.querySelector("#score");
+    parent.replaceChild(resetbtn,scorechild);
+
+    resetbtn.addEventListener("click", () => {
+        newGame();
+        parent.replaceChild(scorechild,resetbtn);
+    });
+}
+
 //scoreboard
 let humanScore = 0;
 let computerScore = 0;
+let gameover = false;
 
-alert("Today, you are going to play JANKEN. Click the button to play a move and the computer will pick as well.");
+//UI Elements
+const GUItext = document.querySelector("#announcements");
+const GUIscore = document.querySelector("#score");
 
-//for(game=0;game<5;game++){
-    PlayBall();
-//}
+newGame();
 
-alert("FINITO. Score is.... " + humanScore + " for you.... and..." + computerScore + " for the BOT.");
+const Btns = document.querySelectorAll(".btn button");
+
+    Btns.forEach((button) => {
+        button.addEventListener("click", () => PlayBall(button.id));
+    });
 
 
-function PlayBall(){
-    console.log("entered playBALL");
+function PlayBall(btnClick){
+    console.log(btnClick);
     // shorthands
     const r = "rock";
     const p = "paper";
     const s = "scissors";
-    
-    let human;
+
+    const human = getHumanChoice(btnClick);
     let holder;
     
     //screen timer display code goes here
     
     //const human = getHumanChoice(prompt("ROCK PAPER OR SCISSORS?"));
     
-    const Btns = document.querySelectorAll("button");
-
-    Btns.forEach((div) => {
-        console.log(div);
-        div.addEventListener("click", getHumanChoice(div.id));
-    });
-
-    if(human === "fail"){
-        alert("you lose by default cause you stoopid");
+    if(human === "fail" || gameover){
+        GUItext.textContent = "Nah, you can't do that.";
     } else {
         if(human == undefined)
         {
-            alert("I don't know how but you played undefined bro. ending game.");
+            GUItext.textContent = "I don't know how but you played undefined bro. ending game.";
             return 0;
         }
         const bot = getComputerChoice();
@@ -113,7 +135,7 @@ function PlayBall(){
                     holder[i] = s;
                     break;
                 default:
-                    alert("something went wrong");
+                    GUItext.textContent ="something went wrong";
             }
         }
         
@@ -121,20 +143,39 @@ function PlayBall(){
     
         switch(result){
             case 1:
-                alert(statement + " YOU LOSE...");
+                GUItext.textContent = statement + " YOU LOSE...";
                 computerScore++;
+                console.log("the current score is " + humanScore + " - " + computerScore);
                 break;
             case 10:
-                alert("Both of you played " + holder[0] + ". TIE.");
+                GUItext.textContent = "Both of you played " + holder[0] + ". TIE.";
                 humanScore++;
                 computerScore++;
+                console.log("the current score is " + humanScore + " - " + computerScore);
                 break;
             case 100:
-                alert(statement + " YOU WIN!!!");
+                GUItext.textContent = statement + " YOU WIN!!!";
                 humanScore++;
+                console.log("the current score is " + humanScore + " - " + computerScore);
                 break;
             default:
-                alert("SOMETHING WENT HORRIBLY WRONG");
+                GUItext.textContent = "SOMETHING WENT HORRIBLY WRONG";
         }
+        
+        GUIscore.textContent = humanScore + " - " + computerScore;
+
+        if(humanScore === 5 || computerScore === 5){
+            if(human === 5 && computerScore === 5){
+                GUItext.innerHTML = "DRAW. Boring...Play again?<br>Final Score: " + humanScore + " - " + computerScore;
+            } else 
+            if(computerScore === 5){
+                GUItext.innerHTML = "YOU LOST.....Time to take revenge?<br>Final Score: " + humanScore + " - " + computerScore;
+            } else {
+                GUItext.innerHTML = "YOU WON!!!! Replay to assert dominance?<br>Final Score: " + humanScore + " - " + computerScore;
+            }
+            setResetButton();
+            gameover = true;
+        }
+
     }
 }

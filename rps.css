@@ -2,6 +2,79 @@
     text-align: center;
 }
 
+/* Animations */
+@-webkit-keyframes bg-scrolling-reverse {
+    100% {
+        background-position: 57px 57px;
+   }
+}
+@-moz-keyframes bg-scrolling-reverse {
+    100% {
+        background-position: 57px 57px;
+   }
+}
+@-o-keyframes bg-scrolling-reverse {
+    100% {
+        background-position: 57px 57px;
+   }
+}
+@keyframes bg-scrolling-reverse {
+    100% {
+        background-position: 57px 57px;
+   }
+}
+@-webkit-keyframes bg-scrolling {
+    0% {
+        background-position: 57px 57px;
+   }
+}
+@-moz-keyframes bg-scrolling {
+    0% {
+        background-position: 57px 57px;
+   }
+}
+@-o-keyframes bg-scrolling {
+    0% {
+        background-position: 57px 57px;
+   }
+}
+@keyframes bg-scrolling {
+    0% {
+        background-position: 57px 57px;
+   }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: url("images/repeated-square-dark.webp") repeat 0 0;
+
+    -webkit-animation: bg-scrolling-reverse 5s infinite;
+	/* Safari 4+ */
+	 -moz-animation: bg-scrolling-reverse 5s infinite;
+	/* Fx 5+ */
+	 -o-animation: bg-scrolling-reverse 5s infinite;
+	/* Opera 12+ */
+	 animation: bg-scrolling-reverse 5s infinite;
+	/* IE 10+ */
+	 -webkit-animation-timing-function: linear;
+	 -moz-animation-timing-function: linear;
+	 -o-animation-timing-function: linear;
+	 animation-timing-function: linear;
+}
+
+@font-face {
+    font-family: Sketch;
+    src: url("Maniatico-23Jw.ttf");
+
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 .btn {
     display: flex;
     align-items: center;
@@ -30,4 +103,34 @@ img {
 
 #imgScissors:hover {
     content: url("images/Scissors.gif");
+}
+
+.UI {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Sketch;
+    font-size: 100px;
+    color:white;
+}
+
+#reset {
+    border-radius: 32px;
+    padding-top: 8px;
+    transition: 0.3s ease-in-out;
+}
+
+#reset:hover {
+    background-color: red;
+}
+
+#announcements {
+    margin: 0px 8px;
+    padding-top: 8px;
+    flex:4;
+    border-radius: 8px;
+    font-size: 48px;
+    border: 8px solid;
+    border-style: groove;
+    border-color: magenta;
 }
