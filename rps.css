@@ -4,18 +4,30 @@
 
 .btn {
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    gap:30px;
 }
 
 button {
     background-color: transparent;
+    border: 0;
 }
 
 img {
     width: 100%;
     height: auto;
+    
 }
 
-#Rock:hover {
-    src: "images/rock.png";
+#imgRock:hover {
+    content: url("images/Rock.gif");
+}
+
+#imgPaper:hover {
+    content: url("images/Paper.gif");
+}
+
+#imgScissors:hover {
+    content: url("images/Scissors.gif");
 }
